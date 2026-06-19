@@ -14,3 +14,6 @@ keybind = ctrl+shift+l=new_split:right
 
 # Close current split
 keybind = ctrl+shift+x=close_surface
+
+copy-on-select = clipboard
+
