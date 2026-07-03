@@ -62,11 +62,11 @@ source $ZSH/oh-my-zsh.sh
 
 # Fix conflicts with vi-mode plugin
 function zvm_after_init() {
+  source <(fzf --zsh)
   bindkey -M viins '^P' up-line-or-beginning-search
   bindkey -M viins '^N' down-line-or-beginning-search
   bindkey -M viins '^R' _atuin_search_widget
   bindkey -M vicmd '^R' _atuin_search_widget
-  source <(fzf --zsh)
 }
 
 export EDITOR='nvim'
