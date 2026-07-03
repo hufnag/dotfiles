@@ -92,6 +92,7 @@ alias zed='zeditor'
 alias lvim='NVIM_APPNAME=lazyvim nvim'
 
 alias cz='chezmoi'
+alias czu='chezmoi update'
 
 
 
