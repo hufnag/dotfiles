@@ -1,0 +1,17 @@
+places-menu@gnome-shell-extensions.gcampax.github.com
+drive-menu@gnome-shell-extensions.gcampax.github.com
+gsconnect@andyholmes.github.io
+clipboard-indicator@tudmotu.com
+tilingshell@ferrarodomenico.com
+appindicatorsupport@rgcjonas.gmail.com
+apps-menu@gnome-shell-extensions.gcampax.github.com
+arcmenu@arcmenu.com
+dash-to-dock@micxgx.gmail.com
+gnome-ui-tune@itstime.tech
+gtk4-ding@smedius.gitlab.com
+legacyschemeautoswitcher@joshimukul29.gmail.com
+native-window-placement@gnome-shell-extensions.gcampax.github.com
+pamac-updates@manjaro.org
+papirus-folders-colorizer@NiffirgkcaJ.github.com
+screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com
+user-theme@gnome-shell-extensions.gcampax.github.com

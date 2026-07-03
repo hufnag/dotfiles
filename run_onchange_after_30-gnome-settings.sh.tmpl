@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+{{- if eq .chezmoi.os "linux" }}
+set -euo pipefail
+
+# Only run on GNOME systems/sessions.
+if ! command -v gnome-shell >/dev/null 2>&1; then
+  exit 0
+fi
+
+# Prefer running only inside an active GNOME session.
+if [ "${XDG_CURRENT_DESKTOP:-}" != "GNOME" ] && [ "${XDG_SESSION_DESKTOP:-}" != "gnome" ]; then
+  exit 0
+fi
+
+GNOME_CONFIG="$HOME/.config/gnome"
+
+# Load Tiling Shell settings if present.
+if [ -f "$GNOME_CONFIG/dconf/tiling-shell.ini" ]; then
+  dconf load /org/gnome/shell/extensions/tilingshell/ < "$GNOME_CONFIG/dconf/tiling-shell.ini"
+fi
+
+# Enable installed extensions from list.
+if command -v gnome-extensions >/dev/null 2>&1 && [ -f "$GNOME_CONFIG/extensions-enabled.txt" ]; then
+  while IFS= read -r uuid; do
+    [ -z "$uuid" ] && continue
+    gnome-extensions enable "$uuid" 2>/dev/null || true
+  done < "$GNOME_CONFIG/extensions-enabled.txt"
+fi
+{{- end }}

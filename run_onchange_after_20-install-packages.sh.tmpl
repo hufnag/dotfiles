@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{- if eq .chezmoi.os "linux" }}
+
+SOURCE_DIR={{ .chezmoi.sourceDir | quote }}
+cd "$SOURCE_DIR"
+
+if ! command -v pacman >/dev/null 2>&1; then
+  exit 0
+fi
+
+if [ -f packages/arch.txt ]; then
+  mapfile -t packages < <(grep -vE '^\s*(#|$)' packages/arch.txt)
+
+  if [ "${#packages[@]}" -gt 0 ]; then
+    sudo pacman -S --needed "${packages[@]}"
+  fi
+fi
+
+if command -v yay >/dev/null 2>&1 && [ -f packages/arch-aur.txt ]; then
+  mapfile -t aur_packages < <(grep -vE '^\s*(#|$)' packages/arch-aur.txt)
+
+  if [ "${#aur_packages[@]}" -gt 0 ]; then
+    yay -S --needed "${aur_packages[@]}"
+  fi
+fi
+
+{{- else }}
+
+exit 0
+
+{{- end }}
