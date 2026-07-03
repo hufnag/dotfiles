@@ -5,6 +5,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Prevent suspend during active ssh connection
+if [ -n "$SSH_CONNECTION" ] && [ -z "$SSH_INHIBIT_ACTIVE" ]; then
+    export SSH_INHIBIT_ACTIVE=1
+    exec systemd-inhibit --what=idle:sleep --why="Active SSH session" "$SHELL" -l
+fi
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -41,18 +47,19 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # HIST_STAMPS="mm/dd/yyyy"
 
 plugins=(
-    git
     copyfile # Adds `copyfile` cmd to copy file content into clipboard
     copypath # Adds `copypath` cmd to copy path into clipboard
     dirhistory # Alt + arrow keys to navigate dirs
     docker # Adds auto completion
     docker-compose # Adds auto completion
     dotenv # Automatically source '.env' when cd into the dir. For exporting env vars
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    zsh-history-substring-search
     fzf
+    git
     systemd
+    zoxide
+    zsh-autosuggestions
+    zsh-history-substring-search
+    zsh-syntax-highlighting
     zsh-vi-mode
 )
 
