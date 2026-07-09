@@ -42,16 +42,12 @@ vim.diagnostic.config({
   underline = true,
 })
 
-local mason_bin = vim.fn.stdpath("data") .. "/mason/bin"
-vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
-
 vim.lsp.enable({
   "clangd",
-  "rust-analyzer",
   "lua_ls",
   "protols",
   "pyright",
-  "rust_analyzer",
+  "rust-analyzer",
 })
 
 return {
@@ -59,10 +55,22 @@ return {
     "neovim/nvim-lspconfig",
     lazy = false,
   },
-
   {
     "mason-org/mason.nvim",
     cmd = "Mason",
+    build = ":MasonBuild",
+    opts = {
+      ensure_installed = {
+        "clangd",
+        "lua_ls",
+        "protols",
+        "pyright",
+        "rust-analyzer",
+        "shfmt",
+        "stylua",
+        "marksman",
+      }
+    },
     opts = {},
   },
 }

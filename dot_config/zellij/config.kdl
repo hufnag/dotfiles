@@ -145,7 +145,7 @@ keybinds clear-defaults=true {
         bind "Alt Shift k" { NewPane "up"; }
         bind "Alt Shift l" { NewPane "right"; }
         bind "Alt Shift n" { NewTab; }
-        bind "Alt x" { CloseFocus; }
+        bind "Alt Shift x" { CloseFocus; }
         bind "Alt z" { ToggleFocusFullscreen; }
         bind "Ctrl h" {
             MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.1.0/vim-zellij-navigator.wasm" {

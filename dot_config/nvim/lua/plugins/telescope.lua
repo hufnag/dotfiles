@@ -11,12 +11,13 @@ return {
       },
       "nvim-tree/nvim-web-devicons",
       "nvim-telescope/telescope-file-browser.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
     },
     keys = {
       {
         "<space><space>",
         function()
-          require("telescope.builtin").buildin()
+          require("telescope.builtin").builtin()
         end,
         desc = "Telescope"
 
@@ -53,7 +54,7 @@ return {
         desc = "Live grep",
       },
       {
-        "<sapce>b",
+        "<space>b",
         function()
           require("telescope.builtin").buffers()
         end,
@@ -143,19 +144,30 @@ return {
             },
           },
         },
-
-        pickers = {
-          find_files = {
-            hidden = true,
-          },
-        },
-
         extensions = {
-          fzf = {},
+          ["ui-select"] = require("telescope.themes").get_dropdown({
+            previewer = false,
+            initial_mode = "normal",
+            layout_config = {
+              width = 0.5,
+              height = 0.4,
+            },
+          }),
         },
-      })
 
-      pcall(telescope.load_extension, "fzf")
-    end,
-  },
-}
+          pickers = {
+            find_files = {
+              hidden = true,
+            },
+          },
+
+          extensions = {
+            fzf = {},
+          },
+        })
+
+        telescope.load_extension("fzf")
+        telescope.load_extension("ui-select")
+      end,
+    },
+  }

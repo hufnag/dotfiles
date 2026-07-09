@@ -4,7 +4,7 @@ return {
     priority = 1000,
     opts = { contrast = "hard" },
     config = function()
-      vim.cmd([[colorschem gruvbox]])
+      vim.cmd([[colorscheme gruvbox]])
     end
   },
   {
