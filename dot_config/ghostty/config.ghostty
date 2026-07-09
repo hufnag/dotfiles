@@ -1,10 +1,10 @@
 theme = Gruvbox Dark Hard
 
 # Navigate between splits
-keybind = ctrl+h=goto_split:left
-keybind = ctrl+j=goto_split:down
-keybind = ctrl+k=goto_split:up
-keybind = ctrl+l=goto_split:right
+# keybind = ctrl+h=goto_split:left
+# keybind = ctrl+j=goto_split:down
+# keybind = ctrl+k=goto_split:up
+# keybind = ctrl+l=goto_split:right
 
 # Create splits
 keybind = ctrl+shift+h=new_split:left

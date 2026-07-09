@@ -139,17 +139,49 @@ keybinds clear-defaults=true {
     }
     shared {
         bind "Alt Shift h" { NewPane "left"; }
-        bind "Ctrl j" { MoveFocus "down"; }
         bind "Alt j" { GoToPreviousTab; }
         bind "Alt Shift j" { NewPane "down"; }
-        bind "Ctrl k" { MoveFocus "up"; }
         bind "Alt k" { GoToNextTab; }
         bind "Alt Shift k" { NewPane "up"; }
-        bind "Ctrl l" { MoveFocus "right"; }
         bind "Alt Shift l" { NewPane "right"; }
         bind "Alt Shift n" { NewTab; }
         bind "Alt x" { CloseFocus; }
         bind "Alt z" { ToggleFocusFullscreen; }
+        bind "Ctrl h" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.1.0/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "left";
+                move_mod "ctrl";
+                use_arrow_keys "false";
+            };
+        }
+
+        bind "Ctrl j" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.1.0/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "down";
+                move_mod "ctrl";
+                use_arrow_keys "false";
+            };
+        }
+
+        bind "Ctrl k" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.1.0/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "up";
+                move_mod "ctrl";
+                use_arrow_keys "false";
+            };
+        }
+
+        bind "Ctrl l" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.1.0/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "right";
+                move_mod "ctrl";
+                use_arrow_keys "false";
+            };
+        }
     }
     shared_except "move" {
         bind "Ctrl h" { MoveFocus "left"; }
@@ -166,7 +198,6 @@ keybinds clear-defaults=true {
         bind "Alt >" { NextSwapLayout; }
         bind "Alt f" { ToggleFloatingPanes; }
         bind "Ctrl g" { SwitchToMode "locked"; }
-        bind "Alt n" { NewPane; }
         bind "Alt o" { MoveTab "right"; }
         bind "Alt p" { TogglePaneInGroup; }
         bind "Alt Shift p" { ToggleGroupMarking; }
@@ -283,7 +314,6 @@ plugins {
 // eg. "file:/path/to/my-plugin.wasm"
 // eg. "https://example.com/my-plugin.wasm"
 load_plugins {
-    // "https://github.com/fresh1dev/zellij-autolock/releases"
     "https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm"
     "https://github.com/dj95/zjstatus/releases/latest/download/zjframes.wasm"
 }
@@ -301,7 +331,7 @@ web_client {
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "my-gruvbox-dark"
+theme "gruvbox-dark"
 // theme "catppuccin-latte"
  
 // Choose the base input mode of zellij.

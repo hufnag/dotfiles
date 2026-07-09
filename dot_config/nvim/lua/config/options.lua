@@ -23,6 +23,7 @@ vim.opt.mouse = "a"
 vim.opt.mousemodel = "extend"
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.cursorline = true
 
 -- Use system clipboard
 vim.opt.clipboard = "unnamedplus"
@@ -54,13 +55,24 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.diffopt:append("linematch:60")
 
 vim.filetype.add({
-    extension = {
-        overlay = "overlay",
-    },
+  extension = {
+    overlay = "overlay",
+  },
 })
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "markdown", "text", "gitcommit" },
-    callback = function()
-        vim.opt_local.spell = true
-    end,
+  pattern = { "markdown", "text", "gitcommit" },
+  callback = function()
+    vim.opt_local.spell = true
+  end,
+})
+
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN]  = "",
+      [vim.diagnostic.severity.INFO]  = "",
+      [vim.diagnostic.severity.HINT]  = "󰌵",
+    },
+  },
 })
