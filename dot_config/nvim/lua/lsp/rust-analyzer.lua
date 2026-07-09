@@ -1,25 +1,25 @@
 return {
-    cmd = { "rust-analyzer" },
+	cmd = { "rust-analyzer" },
 
-    filetypes = { "rust" },
+	filetypes = { "rust" },
 
-    root_markers = {
-        "Cargo.toml",
-        "rust-project.json",
-        ".git",
-    },
+	root_markers = {
+		"Cargo.toml",
+		"rust-project.json",
+		".git",
+	},
 
-    settings = {
-        ["rust-analyzer"] = {
-            cargo = {
-                allFeatures = true,
-            },
-            check = {
-                command = "clippy",
-            },
-            procMacro = {
-                enable = true,
-            },
-        },
-    },
+	settings = {
+		["rust-analyzer"] = {
+			cargo = {
+				allFeatures = true,
+			},
+			check = {
+				command = "clippy",
+			},
+			procMacro = {
+				enable = true,
+			},
+		},
+	},
 }

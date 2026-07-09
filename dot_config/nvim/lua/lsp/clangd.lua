@@ -1,24 +1,24 @@
 return {
-    cmd = {
-        "clangd",
-        "--background-index",
-        "--clang-tidy",
-        "--completion-style=detailed",
-        "--header-insertion=iwyu",
-    },
+	cmd = {
+		"clangd",
+		"--background-index",
+		"--clang-tidy",
+		"--completion-style=detailed",
+		"--header-insertion=iwyu",
+	},
 
-    filetypes = {
-        "c",
-        "cpp",
-        "objc",
-        "objcpp",
-        "cuda",
-    },
+	filetypes = {
+		"c",
+		"cpp",
+		"objc",
+		"objcpp",
+		"cuda",
+	},
 
-    root_markers = {
-        "compile_commands.json",
-        "compile_flags.txt",
-        ".clangd",
-        ".git",
-    },
+	root_markers = {
+		"compile_commands.json",
+		"compile_flags.txt",
+		".clangd",
+		".git",
+	},
 }
