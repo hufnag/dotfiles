@@ -147,6 +147,7 @@ keybinds clear-defaults=true {
         bind "Alt Shift k" { NewPane "up"; }
         bind "Ctrl l" { MoveFocus "right"; }
         bind "Alt Shift l" { NewPane "right"; }
+        bind "Alt Shift n" { NewTab; }
         bind "Alt x" { CloseFocus; }
         bind "Alt z" { ToggleFocusFullscreen; }
     }
@@ -282,7 +283,8 @@ plugins {
 // eg. "file:/path/to/my-plugin.wasm"
 // eg. "https://example.com/my-plugin.wasm"
 load_plugins {
-    "https://github.com/fresh2dev/zellij-autolock/releases"
+    // "https://github.com/fresh1dev/zellij-autolock/releases"
+    "https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm"
     "https://github.com/dj95/zjstatus/releases/latest/download/zjframes.wasm"
 }
 web_client {
@@ -299,7 +301,8 @@ web_client {
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "gruvbox-dark"
+theme "my-gruvbox-dark"
+// theme "catppuccin-latte"
  
 // Choose the base input mode of zellij.
 // Default: normal
@@ -345,6 +348,12 @@ theme "gruvbox-dark"
 //   - false
 // 
 // pane_frames false
+ui {
+    pane_frames {
+        rounded_corners true
+        hide_session_name true
+    }
+}
  
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)
@@ -547,3 +556,4 @@ show_startup_tips false
 // can be useful for removing wrappers around commands
 // Note: be sure to escape backslashes and similar characters properly
 // post_command_discovery_hook "echo $RESURRECT_COMMAND | sed <your_regex_here>"
+

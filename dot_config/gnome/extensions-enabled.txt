@@ -15,3 +15,4 @@ pamac-updates@manjaro.org
 papirus-folders-colorizer@NiffirgkcaJ.github.com
 screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com
 user-theme@gnome-shell-extensions.gcampax.github.com
+caffeine@patapon.info
