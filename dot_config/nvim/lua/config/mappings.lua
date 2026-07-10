@@ -27,6 +27,7 @@ bind("n", "<leader><M-d>", ":bp<bar>bd! #<CR>", { silent = true })
 
 bind("c", "<C-p>", "<Up>", { desc = "Previouse Cmd" })
 bind("c", "<C-n>", "<Down>", { desc = "Next Cmd" })
+-- bind("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic under cursor" })
 -- bind('c', '<Up>', '<C-p>')
 -- bind('c', '<Down>', '<C-n>')
 -- bind('n', 'ä', ':Outline<CR>')

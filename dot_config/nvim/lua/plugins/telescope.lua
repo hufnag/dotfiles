@@ -11,7 +11,6 @@ return {
 			},
 			"nvim-tree/nvim-web-devicons",
 			"nvim-telescope/telescope-file-browser.nvim",
-			"nvim-telescope/telescope-ui-select.nvim",
 		},
 		keys = {
 			{
@@ -119,6 +118,13 @@ return {
 				end,
 				desc = "LSP Definitions",
 			},
+			{
+				"<leader>s",
+				function()
+					require("telescope.builtin").spell_suggest()
+				end,
+				desc = "Spell suggest",
+			},
 		},
 		config = function()
 			local telescope = require("telescope")
@@ -143,17 +149,6 @@ return {
 						},
 					},
 				},
-				extensions = {
-					["ui-select"] = require("telescope.themes").get_dropdown({
-						previewer = false,
-						initial_mode = "normal",
-						layout_config = {
-							width = 0.5,
-							height = 0.4,
-						},
-					}),
-				},
-
 				pickers = {
 					find_files = {
 						hidden = true,
@@ -166,7 +161,6 @@ return {
 			})
 
 			telescope.load_extension("fzf")
-			telescope.load_extension("ui-select")
 		end,
 	},
 }

@@ -4,7 +4,7 @@ return {
 		priority = 1000,
 		opts = { contrast = "hard" },
 		config = function()
-			vim.cmd([[colorscheme gruvbox]])
+			vim.cmd.colorscheme("gruvbox")
 		end,
 	},
 	{
@@ -36,6 +36,40 @@ return {
 	},
 	{
 		"folke/trouble.nvim",
+		cmd = "Trouble",
+		opts = {},
+		keys = {
+			{
+				"<leader>xx",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Diagnostics (Trouble)",
+			},
+			{
+				"<leader>xX",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+				desc = "Buffer Diagnostics (Trouble)",
+			},
+			{
+				"<leader>cs",
+				"<cmd>Trouble symbols toggle focus=false<cr>",
+				desc = "Symbols (Trouble)",
+			},
+			{
+				"<leader>cl",
+				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+				desc = "LSP Definitions / references / ... (Trouble)",
+			},
+			{
+				"<leader>xL",
+				"<cmd>Trouble loclist toggle<cr>",
+				desc = "Location List (Trouble)",
+			},
+			{
+				"<leader>xQ",
+				"<cmd>Trouble qflist toggle<cr>",
+				desc = "Quickfix List (Trouble)",
+			},
+		},
 	},
 	{
 		"folke/noice.nvim",
@@ -45,6 +79,21 @@ return {
 			"rcarriga/nvim-notify",
 		},
 		opts = {
+			cmdline = {
+				format = {
+					input = false, -- Snacks.input owns vim.ui.input prompts.
+				},
+			},
+			notify = {
+				enabled = true,
+				view = "notify",
+			},
+			messages = {
+				enabled = true,
+				view = "mini",
+				view_error = "notify",
+				view_warn = "notify",
+			},
 			lsp = {
 				-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
 				override = {
@@ -53,13 +102,12 @@ return {
 					["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
 				},
 			},
-			-- you can enable a preset for easier configuration
 			presets = {
 				bottom_search = true, -- use a classic bottom cmdline for search
 				command_palette = true, -- position the cmdline and popupmenu together
 				long_message_to_split = true, -- long messages will be sent to a split
 				inc_rename = false, -- enables an input dialog for inc-rename.nvim
-				lsp_doc_border = false, -- add a border to hover docs and signature help
+				lsp_doc_border = true, -- add a border to hover docs and signature help
 			},
 		},
 	},

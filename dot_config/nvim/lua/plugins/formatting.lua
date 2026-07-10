@@ -1,20 +1,43 @@
 return {
 	{
 		"stevearc/conform.nvim",
-		opts = {
-			format_on_save = {
-				-- These options will be passed to conform.format()
-				timeout_ms = 500,
-				lsp_format = "fallback",
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
+		keys = {
+			{
+				"<leader>cf",
+				function()
+					require("conform").format({
+						async = true,
+						lsp_format = "fallback",
+					})
+				end,
+				mode = { "n", "v" },
+				desc = "Format file",
 			},
+		},
+		opts = {
 			formatters_by_ft = {
 				lua = { "stylua" },
-				rust = { "rustfmt", lsp_format = "fallback" },
-				-- Conform will run multiple formatters sequentially
-				python = { "isort", "black" },
-				completion = { "clang_format" },
-				-- Conform will run the first available formatter
-				javascript = { "prettierd", "prettier", stop_after_first = true },
+
+				python = { "ruff_format" },
+
+				c = { "clang_format" },
+				cpp = { "clang_format" },
+
+				cmake = { "gersemi" },
+
+				sh = { "shfmt" },
+				bash = { "shfmt" },
+
+				markdown = { "prettier" },
+				json = { "prettier" },
+				yaml = { "prettier" },
+			},
+
+			format_on_save = {
+				timeout_ms = 1000,
+				lsp_format = "fallback",
 			},
 		},
 	},

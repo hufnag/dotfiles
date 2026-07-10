@@ -73,3 +73,18 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		end
 	end,
 })
+
+-- Spellchecking
+vim.api.nvim_create_autocmd("FileType", {
+	desc = "Enable spellchecking only for specific file types",
+	pattern = {
+		"markdown",
+		"text",
+		"gitcommit",
+		"latex",
+		"tex",
+	},
+	callback = function()
+		vim.opt_local.spell = true
+	end,
+})

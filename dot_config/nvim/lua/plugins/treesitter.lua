@@ -39,16 +39,21 @@ return {
 			local filetypes = {
 				"bash",
 				"c",
+				"cpp",
 				"css",
 				"html",
 				"javascript",
 				"json",
+				"latex",
 				"lua",
 				"markdown",
+				"markdown_inline",
 				"python",
+				"toml",
 				"typescript",
 				"typescriptreact",
 				"vim",
+				"xml",
 				"yaml",
 			}
 

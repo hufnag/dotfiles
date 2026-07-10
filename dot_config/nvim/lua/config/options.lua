@@ -59,13 +59,44 @@ vim.filetype.add({
 		overlay = "overlay",
 	},
 })
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "markdown", "text", "gitcommit" },
-	callback = function()
-		vim.opt_local.spell = true
-	end,
-})
 
+vim.opt.spelllang = { "en_us", "de_de" }
+vim.opt.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
+vim.opt.spelloptions = "camel"
+
+-- local function set_undercurl_highlights()
+-- 	local spell_undercurl = {
+-- 		undercurl = true,
+-- 		sp = "#fabd2f", -- yellow
+-- 	}
+--
+-- 	for _, group in ipairs({ "SpellBad", "SpellCap", "SpellRare", "SpellLocal" }) do
+-- 		vim.api.nvim_set_hl(0, group, spell_undercurl)
+-- 	end
+--
+-- 	vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", {
+-- 		undercurl = true,
+-- 		sp = "#fb4934",
+-- 	})
+-- 	vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", {
+-- 		undercurl = true,
+-- 		sp = "#fabd2f",
+-- 	})
+-- 	vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", {
+-- 		undercurl = true,
+-- 		sp = "#83a598",
+-- 	})
+-- 	vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", {
+-- 		undercurl = true,
+-- 		sp = "#8ec07c",
+-- 	})
+-- end
+
+-- set_undercurl_highlights()
+--
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+-- 	callback = set_undercurl_highlights,
+-- })
 vim.diagnostic.config({
 	signs = {
 		text = {
@@ -76,3 +107,35 @@ vim.diagnostic.config({
 		},
 	},
 })
+
+vim.keymap.set("n", "<leader>e", function()
+	local line = vim.fn.line(".") - 1
+	local diagnostics = vim.diagnostic.get(0, { lnum = line })
+
+	if #diagnostics > 0 then
+		vim.diagnostic.open_float(nil, {
+			scope = "line",
+			border = "rounded",
+			focusable = false,
+		})
+		return
+	end
+
+	local spell = vim.fn.spellbadword()
+	local word = spell[1]
+	local kind = spell[2]
+
+	if word ~= "" then
+		local messages = {
+			bad = "Spelling mistake",
+			caps = "Capitalization issue",
+			rare = "Rare word",
+			local_ = "Word valid in another region",
+		}
+
+		vim.notify((messages[kind] or "Spelling issue") .. ": " .. word .. "\nUse z= for suggestions")
+		return
+	end
+
+	vim.notify("No diagnostic or spelling issue found here")
+end, { desc = "Explain underline/problem" })
