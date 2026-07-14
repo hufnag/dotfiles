@@ -60,6 +60,7 @@ plugins=(
     git
     python
     systemd
+    wd
     zoxide
     zsh-autosuggestions
     zsh-history-substring-search
@@ -70,6 +71,9 @@ plugins=(
 eval "$(atuin init zsh --disable-up-arrow)"
 
 source $ZSH/oh-my-zsh.sh
+
+
+source $HOME/.config/zsh/rsync_wrapper.zsh
 
 # Fix conflicts with vi-mode plugin
 function zvm_after_init() {

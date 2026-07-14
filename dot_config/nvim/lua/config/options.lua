@@ -64,39 +64,6 @@ vim.opt.spelllang = { "en_us", "de_de" }
 vim.opt.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
 vim.opt.spelloptions = "camel"
 
--- local function set_undercurl_highlights()
--- 	local spell_undercurl = {
--- 		undercurl = true,
--- 		sp = "#fabd2f", -- yellow
--- 	}
---
--- 	for _, group in ipairs({ "SpellBad", "SpellCap", "SpellRare", "SpellLocal" }) do
--- 		vim.api.nvim_set_hl(0, group, spell_undercurl)
--- 	end
---
--- 	vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", {
--- 		undercurl = true,
--- 		sp = "#fb4934",
--- 	})
--- 	vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", {
--- 		undercurl = true,
--- 		sp = "#fabd2f",
--- 	})
--- 	vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", {
--- 		undercurl = true,
--- 		sp = "#83a598",
--- 	})
--- 	vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", {
--- 		undercurl = true,
--- 		sp = "#8ec07c",
--- 	})
--- end
-
--- set_undercurl_highlights()
---
--- vim.api.nvim_create_autocmd("ColorScheme", {
--- 	callback = set_undercurl_highlights,
--- })
 vim.diagnostic.config({
 	signs = {
 		text = {
