@@ -88,3 +88,25 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.spell = true
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+	desc = "Show diagnostics in a floating window",
+	group = vim.api.nvim_create_augroup("diagnostic_float", { clear = true }),
+	callback = function()
+		if vim.diagnostic.is_enabled and not vim.diagnostic.is_enabled({ bufnr = 0 }) then
+			return
+		end
+
+		local diagnostics = vim.diagnostic.get(0, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 })
+		if #diagnostics == 0 then
+			return
+		end
+
+		vim.diagnostic.open_float(nil, {
+			scope = "line",
+			focusable = false,
+			border = "rounded",
+			source = "if_many",
+		})
+	end,
+})

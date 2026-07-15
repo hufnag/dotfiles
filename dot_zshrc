@@ -71,18 +71,24 @@ plugins=(
 eval "$(atuin init zsh --disable-up-arrow)"
 
 source $ZSH/oh-my-zsh.sh
-
-
-source $HOME/.config/zsh/rsync_wrapper.zsh
-
-# Fix conflicts with vi-mode plugin
 function zvm_after_init() {
-  source <(fzf --zsh)
-  bindkey -M viins '^P' up-line-or-beginning-search
-  bindkey -M viins '^N' down-line-or-beginning-search
-  bindkey -M viins '^R' _atuin_search_widget
-  bindkey -M vicmd '^R' _atuin_search_widget
-  bindkey -M viins '^U' backward-kill-line
+  # Keep fzf completion, Ctrl-T and Alt-C, but don't let it bind Ctrl-R.
+  FZF_CTRL_R_COMMAND= source <(fzf --zsh)
+
+  zvm_bindkey viins '^P' up-line-or-beginning-search
+  zvm_bindkey viins '^N' down-line-or-beginning-search
+  zvm_bindkey viins '^R' atuin-search-viins
+  zvm_bindkey viins '^U' backward-kill-line
+}
+
+function zvm_after_lazy_keybindings() {
+  zvm_bindkey vicmd '^R' atuin-search-vicmd
+
+  local paste_after="${${(z)$(bindkey -M vicmd 'gp')}[-1]}"
+  local paste_before="${${(z)$(bindkey -M vicmd 'gP')}[-1]}"
+
+  zvm_bindkey vicmd 'p' "$paste_after"
+  zvm_bindkey vicmd 'P' "$paste_before"
 }
 
 export EDITOR='nvim'

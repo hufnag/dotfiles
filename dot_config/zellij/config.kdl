@@ -138,7 +138,7 @@ keybinds clear-defaults=true {
         }
     }
     shared {
-        bind "Alt Shift h" { NewPane "left"; }
+        bind "Alt Shift h" { NewPane "Right"; MoveTab "Left"; }
         bind "Alt j" { GoToPreviousTab; }
         bind "Alt Shift j" { NewPane "down"; }
         bind "Alt k" { GoToNextTab; }
@@ -187,10 +187,10 @@ keybinds clear-defaults=true {
         bind "Ctrl h" { MoveFocus "left"; }
     }
     shared_except "locked" {
-        bind "Alt left" { MoveFocusOrTab "left"; }
-        bind "Alt down" { MoveFocus "down"; }
-        bind "Alt up" { MoveFocus "up"; }
-        bind "Alt right" { MoveFocusOrTab "right"; }
+        bind "Alt left" { MovePane "left"; }
+        bind "Alt down" { MovePane "down"; }
+        bind "Alt up" { MovePane "up"; }
+        bind "Alt right" { MovePane "right"; }
         bind "Alt space" { PreviousSwapLayout; }
         bind "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
@@ -201,7 +201,7 @@ keybinds clear-defaults=true {
         bind "Alt o" { MoveTab "right"; }
         bind "Alt p" { TogglePaneInGroup; }
         bind "Alt Shift p" { ToggleGroupMarking; }
-        bind "Ctrl Shift q" { Quit; }
+        bind "Ctrl End" { Quit; }
     }
     shared_except "locked" "move" {
         bind "Ctrl m" { SwitchToMode "move"; }

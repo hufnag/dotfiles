@@ -1,23 +1,9 @@
 theme = Gruvbox Dark Hard
 font-family = "Hack"
 font-family = "Symbols Nerd Font Mono"
+font-size = 11
 
-#initial-command = "zellij attach -c Default"
+initial-command = "zellij attach -c 1"
 
-# Navigate between splits
-# keybind = ctrl+h=goto_split:left
-# keybind = ctrl+j=goto_split:down
-# keybind = ctrl+k=goto_split:up
-# keybind = ctrl+l=goto_split:right
-
-# Create splits
-# keybind = ctrl+shift+h=new_split:left
-# keybind = ctrl+shift+j=new_split:down
-# keybind = ctrl+shift+k=new_split:up
-# keybind = ctrl+shift+l=new_split:right
-
-# Close current split
-keybind = ctrl+shift+x=close_surface
-
-# copy-on-select = clipboard
+mouse-scroll-multiplier = discrete:0.5
 
