@@ -137,7 +137,7 @@ keybinds clear-defaults=true {
             SwitchToMode "normal"
         }
     }
-    shared {
+    shared_except "locked" {
         bind "Alt Shift h" { NewPane "Right"; MoveTab "Left"; }
         bind "Alt j" { GoToPreviousTab; }
         bind "Alt Shift j" { NewPane "down"; }
@@ -148,8 +148,8 @@ keybinds clear-defaults=true {
         bind "Alt Shift x" { CloseFocus; }
         bind "Alt z" { ToggleFocusFullscreen; }
         bind "Ctrl h" {
-            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.1.0/vim-zellij-navigator.wasm" {
-                name "move_focus";
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "move_focus_or_tab";
                 payload "left";
                 move_mod "ctrl";
                 use_arrow_keys "false";
@@ -157,7 +157,7 @@ keybinds clear-defaults=true {
         }
 
         bind "Ctrl j" {
-            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.1.0/vim-zellij-navigator.wasm" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
                 name "move_focus";
                 payload "down";
                 move_mod "ctrl";
@@ -166,7 +166,7 @@ keybinds clear-defaults=true {
         }
 
         bind "Ctrl k" {
-            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.1.0/vim-zellij-navigator.wasm" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
                 name "move_focus";
                 payload "up";
                 move_mod "ctrl";
@@ -175,16 +175,13 @@ keybinds clear-defaults=true {
         }
 
         bind "Ctrl l" {
-            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.1.0/vim-zellij-navigator.wasm" {
-                name "move_focus";
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "move_focus_or_tab";
                 payload "right";
                 move_mod "ctrl";
                 use_arrow_keys "false";
             };
         }
-    }
-    shared_except "move" {
-        bind "Ctrl h" { MoveFocus "left"; }
     }
     shared_except "locked" {
         bind "Alt left" { MovePane "left"; }
@@ -586,4 +583,3 @@ show_startup_tips false
 // can be useful for removing wrappers around commands
 // Note: be sure to escape backslashes and similar characters properly
 // post_command_discovery_hook "echo $RESURRECT_COMMAND | sed <your_regex_here>"
-
