@@ -27,6 +27,9 @@ bind("n", "<leader><M-d>", ":bp<bar>bd! #<CR>", { silent = true })
 
 bind("c", "<C-p>", "<Up>", { desc = "Previouse Cmd" })
 bind("c", "<C-n>", "<Down>", { desc = "Next Cmd" })
+
+vim.keymap.set("n", "<leader>w", "<cmd>write<cr>", { desc = "Save with formatting" })
+vim.keymap.set("n", "<leader>W", "<cmd>noautocmd write<cr>", { desc = "Save without formatting" })
 -- bind("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic under cursor" })
 -- bind('c', '<Up>', '<C-p>')
 -- bind('c', '<Down>', '<C-n>')

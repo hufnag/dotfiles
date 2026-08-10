@@ -143,6 +143,8 @@ return {
 							["<C-k>"] = actions.move_selection_previous,
 							-- ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
 							["<C-h>"] = "which_key",
+							["<C-x>"] = actions.file_split,
+							["<C-y>"] = actions.file_vsplit,
 						},
 						n = {
 							["q"] = actions.close,

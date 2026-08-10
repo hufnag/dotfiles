@@ -30,6 +30,7 @@ ZVM_SYSTEM_CLIPBOARD_ENABLED=true
 ZVM_VI_INSERT_ESCAPE_BINDKEY=kj
 setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
 setopt nobeep                                                   # No beep
+setopt extendedglob
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
@@ -59,7 +60,9 @@ plugins=(
     fzf
     git
     python
+    rust
     systemd
+    uv
     wd
     zoxide
     zsh-autosuggestions
@@ -124,3 +127,5 @@ alias czs='chezmoi status'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+eval $(thefuck --alias)

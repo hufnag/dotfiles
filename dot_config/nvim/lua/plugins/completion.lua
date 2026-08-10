@@ -59,6 +59,12 @@ return {
 				completion = {
 					menu = { auto_show = true },
 					ghost_text = { enabled = true },
+					list = {
+						selection = {
+							preselect = false,
+							auto_insert = true,
+						},
+					},
 				},
 			},
 		},
