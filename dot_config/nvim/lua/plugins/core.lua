@@ -132,4 +132,12 @@ return {
 		opts = {},
 		version = false,
 	},
+	{ "kevinhwang91/nvim-bqf", opts = {
+		func_map = {
+			vsplit = "<C-y>",
+			hsplit = "<C-x>",
+		},
+	} },
+	{ "junegunn/fzf" },
+	{ "petertriho/nvim-scrollbar", opts = {} },
 }

@@ -38,11 +38,11 @@ return {
 				callback = function(event)
 					local opts = { buffer = event.buf }
 
-					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-					vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-					vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
-					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-					vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
+					vim.keymap.set("n", "<leader>d", vim.lsp.buf.definition, opts)
+					vim.keymap.set("n", "<leader>r", vim.lsp.buf.references, opts)
+					vim.keymap.set("n", "<leader>D", vim.lsp.buf.implementation, opts)
+					vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, opts)
+					vim.keymap.set("n", "<leader>R", vim.lsp.buf.rename, opts)
 					vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
 				end,
 			})

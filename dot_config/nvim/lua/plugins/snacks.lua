@@ -7,34 +7,27 @@ return {
 		opts = {
 			bigfile = { enabled = true },
 			dashboard = { enabled = true },
-			explorer = { enabled = true },
+			explorer = { enabled = false },
 			indent = { enabled = true },
 			input = { enabled = true },
 			-- notifier = { enabled = true, timeout = 3000 },
-			picker = { enabled = true },
+			picker = { enabled = false },
 			quickfile = { enabled = true },
 			scope = { enabled = true },
 			scroll = { enabled = true },
-			statuscolumn = { enabled = true },
+			statuscolumn = { enabled = false },
 			lazygit = { enabled = false },
 			-- words = { enabled = true },
 		},
 		keys = {
 			-- Top Pickers & Explorer
-			{
-				"<leader>b",
-				function()
-					Snacks.picker.buffers()
-				end,
-				desc = "Buffers",
-			},
-			{
-				"ü",
-				function()
-					Snacks.picker.explorer()
-				end,
-				desc = "Explorer",
-			},
+			-- {
+			-- 	"ü",
+			-- 	function()
+			-- 		Snacks.picker.explorer()
+			-- 	end,
+			-- 	desc = "Explorer",
+			-- },
 		},
 	},
 }
