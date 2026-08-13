@@ -74,6 +74,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("InsertLeave", {
+	desc = "Clear native snippet highlights",
+	callback = function()
+		if vim.snippet.active() then
+			vim.snippet.stop()
+		end
+	end,
+})
+
 -- Spellchecking
 vim.api.nvim_create_autocmd("FileType", {
 	desc = "Enable spellchecking only for specific file types",

@@ -95,6 +95,7 @@ function zvm_after_lazy_keybindings() {
 }
 
 export EDITOR='nvim'
+export VISUAL='nvim'
 export BAT_THEME="gruvbox-dark"
 export MANPAGER="moor"
 

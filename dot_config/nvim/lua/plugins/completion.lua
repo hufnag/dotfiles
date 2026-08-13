@@ -30,18 +30,16 @@ return {
 				preset = "super-tab",
 				["<Tab>"] = {
 					function(cmp)
-						if cmp.is_visible() then
-							if cmp.snippet_active() then
-								return cmp.accept()
-							end
-							return cmp.select_and_accept()
-						end
-
 						local suggestion = vim.fn["copilot#GetDisplayedSuggestion"]()
 						if suggestion.text ~= "" then
+							cmp.hide()
 							local keys = vim.fn["copilot#Accept"]()
 							vim.api.nvim_feedkeys(keys, "n", false)
 							return true
+						end
+
+						if cmp.is_visible() then
+							return cmp.accept()
 						end
 					end,
 					"snippet_forward",

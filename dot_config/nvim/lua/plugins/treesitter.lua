@@ -11,6 +11,7 @@ return {
 				"c",
 				"cpp",
 				"css",
+				"doxygen",
 				"html",
 				"javascript",
 				"json",
