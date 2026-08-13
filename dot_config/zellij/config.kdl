@@ -216,7 +216,7 @@ keybinds clear-defaults=true {
         bind "Ctrl t" { SwitchToMode "tab"; }
     }
     shared_except "locked" "pane" "scroll" "search" {
-        bind "Ctrl s" { SwitchToMode "pane"; }
+        bind "Ctrl ö" { SwitchToMode "pane"; }
     }
     shared_except "locked" "resize" {
         bind "Ctrl space" { SwitchToMode "resize"; }

@@ -9,6 +9,7 @@ return {
 			ensure_installed = {
 				"bash",
 				"c",
+				"cpp",
 				"css",
 				"html",
 				"javascript",
@@ -38,37 +39,27 @@ return {
 			vim.opt.foldlevelstart = 99
 			vim.opt.foldnestmax = 4
 
-			require("nvim-treesitter").setup(opts)
+			local treesitter = require("nvim-treesitter")
+			treesitter.setup(opts)
 
 			local install = require("nvim-treesitter.install")
 
 			install.update({ with_sync = false })
 
-			local filetypes = {
-				"bash",
-				"c",
-				"cpp",
-				"css",
-				"html",
-				"javascript",
-				"json",
-				"latex",
-				"lua",
-				"markdown",
-				"markdown_inline",
-				"python",
-				"toml",
-				"typescript",
-				"typescriptreact",
-				"vim",
-				"xml",
-				"yaml",
-			}
-
 			vim.api.nvim_create_autocmd("FileType", {
-				pattern = filetypes,
-				callback = function()
-					pcall(vim.treesitter.start)
+				callback = function(event)
+					local lang = vim.treesitter.language.get_lang(event.match) or event.match
+					if pcall(vim.treesitter.start, event.buf, lang) then
+						return
+					end
+
+					treesitter.install(lang):await(function()
+						vim.schedule(function()
+							if vim.api.nvim_buf_is_valid(event.buf) then
+								pcall(vim.treesitter.start, event.buf, lang)
+							end
+						end)
+					end)
 				end,
 			})
 		end,

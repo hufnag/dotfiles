@@ -140,4 +140,39 @@ return {
 	} },
 	{ "junegunn/fzf" },
 	{ "petertriho/nvim-scrollbar", opts = {} },
+	{
+		"kylechui/nvim-surround",
+		version = "^4.0.0", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+	},
+	{
+		"folke/persistence.nvim",
+		event = "BufReadPre", -- this will only start session saving when an actual file was opened
+		opts = {},
+	},
+	{
+		"chrisgrieser/nvim-spider",
+		lazy = true,
+		keys = {
+			{ "w", "<cmd>lua require('spider').motion('w')<CR>", mode = { "n", "o", "x" } },
+			{ "e", "<cmd>lua require('spider').motion('e')<CR>", mode = { "n", "o", "x" } },
+			{ "b", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "o", "x" } },
+			{ "ge", "<cmd>lua require('spider').motion('ge')<CR>", mode = { "n", "o", "x" } },
+		},
+	},
+	{
+		"danymat/neogen",
+		opts = {
+			snippet_engine = "nvim",
+		},
+		keys = {
+			{
+				"<leader>cd",
+				function()
+					require("neogen").generate()
+				end,
+				desc = "Generate documentation",
+			},
+		},
+	},
 }

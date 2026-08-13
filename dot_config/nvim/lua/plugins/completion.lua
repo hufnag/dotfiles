@@ -28,6 +28,25 @@ return {
 			-- See :h blink-cmp-config-keymap for defining your own keymap
 			keymap = {
 				preset = "super-tab",
+				["<Tab>"] = {
+					function(cmp)
+						if cmp.is_visible() then
+							if cmp.snippet_active() then
+								return cmp.accept()
+							end
+							return cmp.select_and_accept()
+						end
+
+						local suggestion = vim.fn["copilot#GetDisplayedSuggestion"]()
+						if suggestion.text ~= "" then
+							local keys = vim.fn["copilot#Accept"]()
+							vim.api.nvim_feedkeys(keys, "n", false)
+							return true
+						end
+					end,
+					"snippet_forward",
+					"fallback",
+				},
 			},
 			appearance = {
 				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'

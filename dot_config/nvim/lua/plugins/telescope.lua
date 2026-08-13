@@ -47,6 +47,13 @@ return {
 			{
 				"<space>g",
 				function()
+					require("telescope.builtin").git_files()
+				end,
+				desc = "Git files",
+			},
+			{
+				"<space>s",
+				function()
 					require("telescope.builtin").live_grep()
 				end,
 				desc = "Live grep",
@@ -144,7 +151,7 @@ return {
 							-- ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
 							["<C-h>"] = "which_key",
 							["<C-x>"] = actions.file_split,
-							["<C-y>"] = actions.file_vsplit,
+							["<C-s>"] = actions.file_vsplit,
 						},
 						n = {
 							["q"] = actions.close,
