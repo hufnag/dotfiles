@@ -138,7 +138,6 @@ return {
 			hsplit = "<C-x>",
 		},
 	} },
-	{ "junegunn/fzf" },
 	{ "petertriho/nvim-scrollbar", opts = {} },
 	{
 		"kylechui/nvim-surround",

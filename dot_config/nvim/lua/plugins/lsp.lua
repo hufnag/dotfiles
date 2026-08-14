@@ -39,13 +39,13 @@ return {
 					vim.keymap.set(
 						"n",
 						"<leader>d",
-						vim.lsp.buf.definition,
+						Snacks.picker.lsp_definitions,
 						{ buffer = event.buf, desc = "Go to definition" }
 					)
 					vim.keymap.set(
 						"n",
 						"<leader>r",
-						vim.lsp.buf.references,
+						Snacks.picker.lsp_references,
 						{ buffer = event.buf, desc = "Go to references" }
 					)
 					vim.keymap.set(

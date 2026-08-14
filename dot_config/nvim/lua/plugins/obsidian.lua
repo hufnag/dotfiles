@@ -12,7 +12,7 @@ return {
 			},
 		},
 		picker = {
-			name = "telescope.nvim",
+			name = "snacks.picker",
 		},
 	},
 	config = function(_, opts)

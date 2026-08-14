@@ -47,9 +47,13 @@ return {
 
 			install.update({ with_sync = false })
 
+			local available = treesitter.get_available()
 			vim.api.nvim_create_autocmd("FileType", {
 				callback = function(event)
 					local lang = vim.treesitter.language.get_lang(event.match) or event.match
+					if not vim.list_contains(available, lang) then
+						return
+					end
 					if pcall(vim.treesitter.start, event.buf, lang) then
 						return
 					end
