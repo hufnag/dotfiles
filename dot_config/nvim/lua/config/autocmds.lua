@@ -98,10 +98,14 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+vim.api.nvim_create_autocmd("CursorHold", {
 	desc = "Show diagnostics in a floating window",
 	group = vim.api.nvim_create_augroup("diagnostic_float", { clear = true }),
 	callback = function()
+		if vim.api.nvim_get_mode().mode ~= "n" then
+			return
+		end
+
 		if vim.diagnostic.is_enabled and not vim.diagnostic.is_enabled({ bufnr = 0 }) then
 			return
 		end

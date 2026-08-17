@@ -28,23 +28,6 @@ return {
 			-- See :h blink-cmp-config-keymap for defining your own keymap
 			keymap = {
 				preset = "super-tab",
-				["<Tab>"] = {
-					function(cmp)
-						local suggestion = vim.fn["copilot#GetDisplayedSuggestion"]()
-						if suggestion.text ~= "" then
-							cmp.hide()
-							local keys = vim.fn["copilot#Accept"]()
-							vim.api.nvim_feedkeys(keys, "n", false)
-							return true
-						end
-
-						if cmp.is_visible() then
-							return cmp.accept()
-						end
-					end,
-					"snippet_forward",
-					"fallback",
-				},
 			},
 			appearance = {
 				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -62,6 +45,10 @@ return {
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			sources = {
 				default = { "lsp", "path", "snippets", "buffer" },
+				providers = {
+					-- Show current-buffer keyword completions alongside LSP results.
+					lsp = { fallbacks = {} },
+				},
 			},
 
 			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
@@ -76,12 +63,6 @@ return {
 				completion = {
 					menu = { auto_show = true },
 					ghost_text = { enabled = true },
-					list = {
-						selection = {
-							preselect = false,
-							auto_insert = true,
-						},
-					},
 				},
 			},
 		},
