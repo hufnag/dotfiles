@@ -1,0 +1,28 @@
+layout {
+  pane size=1 split_direction="vertical" {
+    pane size="75%" borderless=true {
+      plugin location="tab-bar"
+    }
+    pane size="25%" borderless=true {
+      plugin location="https://github.com/h1romas4/zellij-datetime/releases/latest/download/zellij-datetime.wasm"{
+      timezone1 "CEST/+2"
+      default_timezone "CEST/+2"
+      date_format "%d.%m.%Y %A"
+      time_format "%H:%M"
+      background_color "#ebdbb2"
+      foreground_color "#3c3836"
+      pane_color "#3c3836"
+      enable_right_click false
+      arrow_separator1 ""
+      arrow_separator2 ""
+      arrow_separator3 ""
+      padding_adjust 0
+      text_align "right"
+    }
+  }
+}
+pane
+pane size=1 borderless=true {
+  plugin location="status-bar"
+}
+}
