@@ -42,6 +42,32 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 
+local function can_persist_view(buf)
+	return vim.bo[buf].buftype == "" and vim.api.nvim_buf_get_name(buf) ~= ""
+end
+
+local view_group = vim.api.nvim_create_augroup("persist_file_views", { clear = true })
+
+vim.api.nvim_create_autocmd("BufWinLeave", {
+	desc = "Save folds for file",
+	group = view_group,
+	callback = function(event)
+		if can_persist_view(event.buf) then
+			vim.cmd("silent! mkview")
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+	desc = "Restore folds for file",
+	group = view_group,
+	callback = function(event)
+		if can_persist_view(event.buf) then
+			vim.cmd("silent! loadview")
+		end
+	end,
+})
+
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
 	desc = "Resize splits if window got resized",

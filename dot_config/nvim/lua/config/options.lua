@@ -32,6 +32,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.wildmenu = true
 vim.opt.wildmode = { "longest", "list", "full" }
 vim.opt.undofile = true
+vim.opt.viewoptions:append("folds")
 
 -- Case insensitive file and directory completion
 vim.opt.wildignorecase = true
