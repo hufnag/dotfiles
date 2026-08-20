@@ -11,6 +11,19 @@ bind("n", "n", "nzzzv")
 bind("n", "N", "Nzzzv")
 bind("n", "J", "mzJ`z")
 
+local function diagnostic_jump(count, severity)
+	return function()
+		vim.diagnostic.jump({ count = count, severity = severity })
+	end
+end
+
+bind("n", "üd", diagnostic_jump(-1), { desc = "Previous diagnostic" })
+bind("n", "+d", diagnostic_jump(1), { desc = "Next diagnostic" })
+bind("n", "üe", diagnostic_jump(-1, vim.diagnostic.severity.ERROR), { desc = "Previous error" })
+bind("n", "+e", diagnostic_jump(1, vim.diagnostic.severity.ERROR), { desc = "Next error" })
+bind("n", "üw", diagnostic_jump(-1, vim.diagnostic.severity.WARN), { desc = "Previous warning" })
+bind("n", "+w", diagnostic_jump(1, vim.diagnostic.severity.WARN), { desc = "Next warning" })
+
 bind("v", "J", ":m '>+1<CR>gv=gv")
 bind("v", "K", ":m '<-2<CR>gv=gv")
 bind("i", "<C-j>", "<esc>:m .+1<CR>==")

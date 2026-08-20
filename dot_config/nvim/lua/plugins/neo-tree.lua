@@ -21,7 +21,7 @@ return {
 			},
 		},
 		keys = {
-			{ "ü", "<cmd>Neotree toggle<cr>", desc = "Toggle NeoTree" },
+			{ "ä", "<cmd>Neotree toggle<cr>", desc = "Toggle NeoTree" },
 		},
 	},
 }

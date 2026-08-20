@@ -50,17 +50,7 @@ return {
 			vim.api.nvim_create_autocmd("FileType", {
 				callback = function(event)
 					local lang = vim.treesitter.language.get_lang(event.match) or event.match
-					if pcall(vim.treesitter.start, event.buf, lang) then
-						return
-					end
-
-					treesitter.install(lang):await(function()
-						vim.schedule(function()
-							if vim.api.nvim_buf_is_valid(event.buf) then
-								pcall(vim.treesitter.start, event.buf, lang)
-							end
-						end)
-					end)
+					pcall(vim.treesitter.start, event.buf, lang)
 				end,
 			})
 		end,

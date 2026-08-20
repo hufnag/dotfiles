@@ -27,7 +27,24 @@ return {
 			--
 			-- See :h blink-cmp-config-keymap for defining your own keymap
 			keymap = {
-				preset = "super-tab",
+				preset = "default",
+				["<S-CR>"] = {
+					function(cmp)
+						if vim.fn.exists("*copilot#GetDisplayedSuggestion") == 1 then
+							local suggestion = vim.fn["copilot#GetDisplayedSuggestion"]()
+							if suggestion.text ~= "" then
+								cmp.hide()
+								return vim.fn["copilot#Accept"]()
+							end
+						end
+					end,
+					"fallback",
+				},
+				["<Tab>"] = { "accept", "snippet_forward", "fallback" },
+				["<S-Tab>"] = { "snippet_backward", "fallback" },
+				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+				["<C-e>"] = { "hide", "fallback" },
+				["<CR>"] = { "fallback" },
 			},
 			appearance = {
 				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -38,6 +55,12 @@ return {
 			-- (Default) Only show the documentation popup when manually triggered
 			completion = {
 				documentation = { auto_show = true },
+				list = {
+					selection = {
+						preselect = false,
+						auto_insert = false,
+					},
+				},
 				trigger = { show_in_snippet = false },
 			},
 
@@ -59,7 +82,10 @@ return {
 			fuzzy = { implementation = "prefer_rust_with_warning" },
 
 			cmdline = {
-				keymap = { preset = "cmdline" },
+				keymap = {
+					preset = "cmdline",
+					["<Tab>"] = { "accept", "fallback" },
+				},
 				completion = {
 					menu = { auto_show = true },
 					ghost_text = { enabled = true },
