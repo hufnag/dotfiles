@@ -11,6 +11,7 @@ return {
 		---@type snacks.Config
 		opts = {
 			bigfile = { enabled = true },
+			bufdelete = { enabled = true },
 			dashboard = {
 				preset = {
 					keys = {
@@ -99,9 +100,23 @@ return {
 			{
 				"<space>f",
 				function()
-					Snacks.picker.files()
+					Snacks.picker.smart()
 				end,
-				desc = "Find files",
+				desc = "(Smart)Find files",
+			},
+			{
+				"<space>:",
+				function()
+					Snacks.picker.command_history()
+				end,
+				desc = "Command History",
+			},
+			{
+				"<space>n",
+				function()
+					Snacks.picker.notifications()
+				end,
+				desc = "Notification History",
 			},
 			{
 				"<space>F",
@@ -214,6 +229,27 @@ return {
 					Snacks.picker.spelling()
 				end,
 				desc = "Spell suggest",
+			},
+			{
+				"<space>e",
+				function()
+					Snacks.picker.diagnostics()
+				end,
+				desc = "Diagnostics",
+			},
+			{
+				"<space>E",
+				function()
+					Snacks.picker.diagnostics_buffer()
+				end,
+				desc = "Buffer diagnostics",
+			},
+			{
+				"<space>G",
+				function()
+					Snacks.picker.git_diff()
+				end,
+				desc = "Git Diff (Hunks)",
 			},
 		},
 	},

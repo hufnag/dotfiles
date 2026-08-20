@@ -58,7 +58,7 @@ return {
 				list = {
 					selection = {
 						preselect = false,
-						auto_insert = false,
+						auto_insert = true,
 					},
 				},
 				trigger = { show_in_snippet = false },
@@ -87,6 +87,12 @@ return {
 					["<Tab>"] = { "accept", "fallback" },
 				},
 				completion = {
+					list = {
+						selection = {
+							preselect = false,
+							auto_insert = false,
+						},
+					},
 					menu = { auto_show = true },
 					ghost_text = { enabled = true },
 				},

@@ -1,6 +1,22 @@
 gui:
   nerdFontsVersion: "3"
-# keybinding:
-#   universal:
-    # nextTab: 'ö'
-    # prevTab: 'ä'
+
+customCommands:
+  - description: "Add empty commit"
+    key: "E"
+    context: "commits"
+    loadingText: "Committing empty commit..."
+    command: 'git commit --allow-empty -m "{{.Form.Message}}"'
+    prompts:
+      - type: "input"
+        key: "Message"
+        title: "Empty commit message"
+  - description: "Push all branches"
+    key: "<c-p>"
+    context: "global"
+    loadingText: "Pushing all branches..."
+    command: "git push --all"
+    prompts:
+      - type: "confirm"
+        title: "Push all branches"
+        body: "Push every local branch to the default remote?"

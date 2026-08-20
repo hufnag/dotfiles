@@ -220,7 +220,7 @@ keybinds clear-defaults=true {
         bind "Ctrl ö" { SwitchToMode "pane"; }
     }
     shared_except "locked" "resize" {
-        bind "Ctrl space" { SwitchToMode "resize"; }
+        bind "Ctrl #" { SwitchToMode "resize"; }
     }
     shared_except "normal" "locked" "entersearch" {
         bind "enter" { SwitchToMode "normal"; }
