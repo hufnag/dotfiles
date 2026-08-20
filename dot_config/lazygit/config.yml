@@ -15,8 +15,17 @@ customCommands:
     key: "<c-p>"
     context: "global"
     loadingText: "Pushing all branches..."
-    command: "git push --all"
+    command: "git push {{.Form.PushMode}} --all"
     prompts:
+      - type: "menu"
+        key: "PushMode"
+        title: "Force push?"
+        options:
+          - name: "No"
+            value: ""
+          - name: "Yes, with lease"
+            description: "Refuse to overwrite unexpected remote changes"
+            value: "--force-with-lease"
       - type: "confirm"
         title: "Push all branches"
         body: "Push every local branch to the default remote?"
