@@ -40,11 +40,11 @@ return {
 					end,
 					"fallback",
 				},
-				["<Tab>"] = { "accept", "snippet_forward", "fallback" },
+				["<Tab>"] = { "snippet_forward", "fallback" },
 				["<S-Tab>"] = { "snippet_backward", "fallback" },
 				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
 				["<C-e>"] = { "hide", "fallback" },
-				["<CR>"] = { "fallback" },
+				["<CR>"] = { "accept", "fallback" },
 			},
 			appearance = {
 				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -85,11 +85,12 @@ return {
 				keymap = {
 					preset = "cmdline",
 					["<Tab>"] = { "accept", "fallback" },
+					["<CR>"] = { "fallback" },
 				},
 				completion = {
 					list = {
 						selection = {
-							preselect = false,
+							preselect = true,
 							auto_insert = false,
 						},
 					},

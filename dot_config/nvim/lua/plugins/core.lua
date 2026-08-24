@@ -72,6 +72,7 @@ return {
 		},
 	},
 	{
+		-- Experimental plugin for modern UI look
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		dependencies = {
@@ -112,11 +113,13 @@ return {
 		},
 	},
 	{
+		-- Plugin for highlighting and managing TODO comments
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {},
 	},
 	{
+		-- Configures LuaLS for Neovim development
 		"folke/lazydev.nvim",
 		ft = "lua", -- only load on lua files
 		opts = {
@@ -128,28 +131,36 @@ return {
 		},
 	},
 	{
+		-- Plugin for auto-pairs
 		"nvim-mini/mini.pairs",
 		opts = {},
 		version = false,
 	},
-	{ "kevinhwang91/nvim-bqf", opts = {
-		func_map = {
-			vsplit = "<C-y>",
-			hsplit = "<C-x>",
+	{
+		-- Plugin for better quickfix window
+		"kevinhwang91/nvim-bqf",
+		opts = {
+			func_map = {
+				vsplit = "<C-y>",
+				hsplit = "<C-x>",
+			},
 		},
-	} },
+	},
 	{ "petertriho/nvim-scrollbar", opts = {} },
 	{
+		-- Surround text objects plugin
 		"kylechui/nvim-surround",
 		version = "^4.0.0", -- Use for stability; omit to use `main` branch for the latest features
 		event = "VeryLazy",
 	},
 	{
+		-- Session management plugin
 		"folke/persistence.nvim",
 		event = "BufReadPre", -- this will only start session saving when an actual file was opened
 		opts = {},
 	},
 	{
+		-- Documentation generator plugin
 		"danymat/neogen",
 		opts = {
 			snippet_engine = "nvim",
@@ -161,6 +172,38 @@ return {
 					require("neogen").generate()
 				end,
 				desc = "Generate documentation",
+			},
+		},
+	},
+	{
+		-- Search and Replace plugin
+		"MagicDuck/grug-far.nvim",
+		config = true,
+		keys = {
+			{
+				"<leader>/",
+				function()
+					---@type grug.far.OptionsOverride
+					local opts = {}
+					local entry = require("grug-far").get_last_history_entry()
+					if entry ~= nil then
+						opts.prefills = entry
+						opts.engine = entry.engine
+						opts.replacementInterpreter = entry.replacementInterpreter
+					end
+
+					require("grug-far").open(opts)
+				end,
+				mode = "n",
+				desc = "Search and Replace",
+			},
+			{
+				"<leader>/",
+				function()
+					require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })
+				end,
+				mode = "v",
+				desc = "Search and Replace",
 			},
 		},
 	},

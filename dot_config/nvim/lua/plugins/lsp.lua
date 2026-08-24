@@ -60,21 +60,16 @@ return {
 						vim.lsp.buf.hover,
 						{ buffer = event.buf, desc = "Hover documentation" }
 					)
-					vim.keymap.set("n", "<leader>R", vim.lsp.buf.rename, { buffer = event.buf, desc = "Rename symbol" })
-					vim.keymap.set(
-						"n",
-						"<C-.>",
-						function()
-							local line = vim.api.nvim_win_get_cursor(0)[1]
-							vim.lsp.buf.code_action({
-								range = {
-									start = { line, 0 },
-									["end"] = { line, #vim.api.nvim_get_current_line() },
-								},
-							})
-						end,
-						{ buffer = event.buf, desc = "Code action for current line" }
-					)
+					vim.keymap.set("n", "R", vim.lsp.buf.rename, { buffer = event.buf, desc = "Rename symbol" })
+					vim.keymap.set("n", "<C-.>", function()
+						local line = vim.api.nvim_win_get_cursor(0)[1]
+						vim.lsp.buf.code_action({
+							range = {
+								start = { line, 0 },
+								["end"] = { line, #vim.api.nvim_get_current_line() },
+							},
+						})
+					end, { buffer = event.buf, desc = "Code action for current line" })
 					vim.keymap.set("v", "<C-.>", vim.lsp.buf.code_action, {
 						buffer = event.buf,
 						desc = "Code action for selection",

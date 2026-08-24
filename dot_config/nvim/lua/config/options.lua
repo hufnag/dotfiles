@@ -1,5 +1,5 @@
 vim.g.mapleader = "ö"
-vim.g.maplocalleader = "ö"
+vim.g.maplocalleader = "-"
 
 vim.opt.backspace = { "indent", "eol", "start" }
 vim.opt.smartindent = true
