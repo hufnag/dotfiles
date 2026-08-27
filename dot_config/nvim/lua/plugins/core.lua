@@ -200,7 +200,7 @@ return {
 			{
 				"<leader>/",
 				function()
-					require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })
+					require("grug-far").open()
 				end,
 				mode = "v",
 				desc = "Search and Replace",

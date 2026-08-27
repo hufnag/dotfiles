@@ -26,6 +26,22 @@ bind("n", "+e", diagnostic_jump(1, vim.diagnostic.severity.ERROR), { desc = "Nex
 bind("n", "üw", diagnostic_jump(-1, vim.diagnostic.severity.WARN), { desc = "Previous warning" })
 bind("n", "+w", diagnostic_jump(1, vim.diagnostic.severity.WARN), { desc = "Next warning" })
 
+bind("n", "<leader>yd", function()
+	local line = vim.api.nvim_win_get_cursor(0)[1] - 1
+	local diagnostics = vim.diagnostic.get(0, { lnum = line })
+
+	if #diagnostics == 0 then
+		vim.notify("No diagnostics on the current line", vim.log.levels.INFO)
+		return
+	end
+
+	local messages = vim.tbl_map(function(diagnostic)
+		return diagnostic.message
+	end, diagnostics)
+	vim.fn.setreg("+", table.concat(messages, "\n"))
+	vim.notify(string.format("Yanked %d diagnostic%s to clipboard", #diagnostics, #diagnostics == 1 and "" or "s"))
+end, { desc = "Yank line diagnostics" })
+
 bind("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" })
 bind("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
 bind("i", "<C-j>", "<esc>:m .+1<CR>==", { desc = "Move current line down" })
@@ -43,6 +59,7 @@ end, { desc = "Delete current buffer" })
 bind("n", "<M-D>", function()
 	Snacks.bufdelete.invisible()
 end, { desc = "Delete all invisible buffers" })
+bind("n", "<M-x>", ":bd<CR>", { desc = "Delete current buffer and split" })
 
 bind("c", "<C-p>", "<Up>", { desc = "Previouse Cmd" })
 bind("c", "<C-n>", "<Down>", { desc = "Next Cmd" })

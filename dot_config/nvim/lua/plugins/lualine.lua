@@ -24,7 +24,7 @@ return {
 					"branch",
 					"diff",
 				},
-				lualine_c = { "filename" },
+				lualine_c = { "vim.api.nvim_buf_get_name(0)" },
 				lualine_x = { "encoding", "fileformat", "filetype" },
 				lualine_y = { "progress" },
 				lualine_z = {
