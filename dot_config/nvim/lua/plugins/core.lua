@@ -80,11 +80,6 @@ return {
 			"rcarriga/nvim-notify",
 		},
 		opts = {
-			cmdline = {
-				format = {
-					input = false, -- Snacks.input owns vim.ui.input prompts.
-				},
-			},
 			notify = {
 				enabled = true,
 				view = "notify",
@@ -204,6 +199,20 @@ return {
 				end,
 				mode = "v",
 				desc = "Search and Replace",
+			},
+		},
+	},
+	{
+		event = "VeryLazy",
+		"folke/flash.nvim",
+		opts = {
+			modes = {
+				search = {
+					emabled = true,
+				},
+				char = {
+					jump_labels = true,
+				},
 			},
 		},
 	},

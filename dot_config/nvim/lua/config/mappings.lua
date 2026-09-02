@@ -64,8 +64,7 @@ bind("n", "<M-x>", ":bd<CR>", { desc = "Delete current buffer and split" })
 bind("c", "<C-p>", "<Up>", { desc = "Previouse Cmd" })
 bind("c", "<C-n>", "<Down>", { desc = "Next Cmd" })
 
-vim.keymap.set("n", "<leader>w", "<cmd>write<cr>", { desc = "Save with formatting" })
-vim.keymap.set("n", "<leader>W", "<cmd>noautocmd write<cr>", { desc = "Save without formatting" })
+vim.keymap.set("n", "<leader>w", "<cmd>noautocmd write<cr>", { desc = "Save without formatting" })
 
 -- bind('n', '<leadeR>b', ':DapToggleBreakpoint<CR>', {})
 -- bind('n', 'gd', ':DapContinue<CR>', {})

@@ -32,3 +32,5 @@ customCommands:
             description: "Overwrite remote changes"
             value: "--force"
             key: "F"
+os:
+  editPreset: nvim-remote

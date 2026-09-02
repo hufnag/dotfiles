@@ -136,6 +136,11 @@ vim.api.nvim_create_autocmd("CursorHold", {
 			return
 		end
 
+		local existing_float = vim.b.lsp_floating_preview
+		if existing_float and vim.api.nvim_win_is_valid(existing_float) then
+			return
+		end
+
 		local diagnostics = vim.diagnostic.get(0, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 })
 		if #diagnostics == 0 then
 			return

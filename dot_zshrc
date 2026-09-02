@@ -78,6 +78,9 @@ function zvm_after_init() {
   # Keep fzf completion, Ctrl-T and Alt-C, but don't let it bind Ctrl-R.
   FZF_CTRL_R_COMMAND= source <(fzf --zsh)
 
+  zvm_bindkey viins $'\eö' dirhistory_zle_dirhistory_back
+  zvm_bindkey viins $'\eä' dirhistory_zle_dirhistory_future
+  zvm_bindkey viins $'\eü' dirhistory_zle_dirhistory_up
   zvm_bindkey viins '^P' up-line-or-beginning-search
   zvm_bindkey viins '^N' down-line-or-beginning-search
   zvm_bindkey viins '^R' atuin-search-viins
@@ -102,6 +105,7 @@ export MANPAGER="moor"
 # export LANG=en_US.UTF-8
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias nvimr="nvim -c 'lua require(\"persistence\").load()'"
 
 alias lg=lazygit
 # Eza aliases
